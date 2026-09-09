@@ -7,7 +7,7 @@ const morgan = require("morgan")
 const methodOverride = require("method-override")
 const User = require('./models/user')
 const Listing = require('./models/listing')
-
+const Category = require('./models/category')
 
 
 
@@ -47,10 +47,10 @@ conntectToDB()
 async function testRelationships() {
     try {
         const newUser = await User.create({
-            userName: "yousif_host",
+            username: "yousif_host",
             password: "password123"
         })
-        console.log("Created User", NewUser)
+        console.log("Created User", newUser)
         
         
         const newListing = await Listing.create({
@@ -62,13 +62,17 @@ async function testRelationships() {
         })
         console.log("Created Listing", newListing)
     } catch (error) {
-        console.log(Error in removeEventListener.ship)
+        console.log("Error in RElatin", error)
     }
+
+    const newCategory = await Category.create({
+        categoryName: "Villa119"
+    })
      
 }
 
 
-
+testRelationships()
 
 
 
