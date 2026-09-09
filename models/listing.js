@@ -29,5 +29,5 @@ const listingSchema = new mongoose.Schema({
 
 }, { timestamps: true})
 
-const listing = mongoose.model('Listing',listingSchemaSchema)
+const Listing = mongoose.model('Listing', listingSchema)
 module.exports = Listing

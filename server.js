@@ -6,7 +6,7 @@ const mongoose = require("mongoose")
 const morgan = require("morgan")
 const methodOverride = require("method-override")
 const User = require('./models/user')
-const Iisting = requier('./models/listing')
+const Listing = require('./models/listing')
 
 
 
@@ -44,7 +44,28 @@ conntectToDB()
 
 
 
-
+async function testRelationships() {
+    try {
+        const newUser = await User.create({
+            userName: "yousif_host",
+            password: "password123"
+        })
+        console.log("Created User", NewUser)
+        
+        
+        const newListing = await Listing.create({
+            streetAddress: "Road119, Block1824",
+            city: "Hamad Town",
+            price: 150,
+            size: 200,
+            owner: newUser._id
+        })
+        console.log("Created Listing", newListing)
+    } catch (error) {
+        console.log(Error in removeEventListener.ship)
+    }
+     
+}
 
 
 
