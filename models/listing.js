@@ -1,6 +1,17 @@
 const mongoose = require('mongoose')
 
 const listingSchema = new mongoose.Schema({
+    title:{
+        type:String,
+        required:true,
+        minlength:[5, 'Title is too short!']
+    },
+    discription:{
+        type:String,
+        required:true,
+        maxlength:[119,'Description is too long!']
+    },
+
     streetAddress: {
         type: String,
         required: true
@@ -12,6 +23,15 @@ const listingSchema = new mongoose.Schema({
     price: {
         type: Number,
         required: true
+    },
+    propertyType:{
+        type:String,
+        required:true,
+        enu:['Flat', 'Villa', 'Compound', 'Village']
+    },
+    isAvailable:{
+        type: Boolean,
+        default: true
     },
     size: {
         type: Number

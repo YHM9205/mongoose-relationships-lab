@@ -12,6 +12,7 @@ const Category = require('./models/category')
 const Reviewe = require('./models/review')
 
 const userRoutes = require('./routes/UserRoutes');
+const listingRoutes = require('./routes/listingRoutes');
 
 
 
@@ -31,10 +32,12 @@ app.use(express.static('public')); //all static files are in the public folder
 app.use(express.urlencoded({ extended: false })); // this will allow us to see the data being sent in the POST or PUT
 app.use(methodOverride("_method")); // Changes the method based on the ?_method
 app.use(morgan("dev")) // logs the requests as they are sent to our sever in the terminal
+app.use(express.json())
 
 
 
 app.use(userRoutes)
+app.use(listingRoutes)
 
 
 async function conntectToDB() { //connection to the database
