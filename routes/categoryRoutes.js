@@ -1,24 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const Category = require('../models/category')
+const catCtr1 = require('../controllers/category')
 
-router.get('/categories', async (req,res)=>{
-try{
-    const categories = await Category.find({})
-    res.render('categories/index', {categories})
-} catch (err) {
-    res.send("Error: " + err.message)
-}
-})
 
-router.post('/categories', async (req,res)=>{
-try{
-    const newCategory = new Category(req.body)
-    await newCategory.save()
-    res.redirect('/categories')
-} catch (err) {
-    res.send("Error: " + err.message)
-}
-})
+router.get('/categories/new', catCtr1.createCategory);
+router.post('/categories', catCtr1.createCategory);
+router.get('/categorries', catCtr1.allCategories)
+
+
 
 module.exports = router
