@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-const bcrypt = require('bcrypt')
 
 const userSchema = new mongoose.Schema({
     username: {
@@ -23,7 +22,7 @@ const userSchema = new mongoose.Schema({
         type: Number,
         required: true,
         min: [16, 'Age must be at least 16'],
-        max: [65, 'Age must not bigger then 65']
+        max: [65, 'Age must not be bigger then 65']
     },
     role: {
         type: String,
@@ -39,21 +38,11 @@ const userSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Listing'
         }],
-        validate: (val) => val.length <= 5,
     }
+
 }, { timestamps: true })
 
-userSchema.pre('save', async function(next) {
-    try {
-        if (!this.isModified('password')) return next()
 
-        const salt = await bcrypt.genSalt(10)
-        this.password = await bcrypt.hash(this.password, salt)
-        next()
-    } catch (err) {
-        next(err)
-    }
-});
 
 const User = mongoose.model('User', userSchema)
 module.exports = User

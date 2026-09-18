@@ -9,20 +9,22 @@ reviewSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    rating:{
+    rating: {
         type: Number,
-        min:1,
-        max:5
+        min: 1,
+        max: 5
     },
-    listing:{
+    listing: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Listing',
-        required:true
+        required: true
     },
-    creator:{
+    creator: {
         type: mongoose.Schema.Types.ObjectId,
-        ref:'User',
-        required:true,
+        ref: 'User',
+        required: true,
     },
- }, { timestamps: true});
- module.exports = mongoose.model('Review', reviewSchema)
+}, { timestamps: true });
+
+const Reviwe = mongoose.model('Review', reviewSchema)
+moudule.exports = Reviwe

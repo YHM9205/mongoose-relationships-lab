@@ -6,12 +6,11 @@ const listingSchema = new mongoose.Schema({
         required:true,
         minlength:[5, 'Title is too short!']
     },
-    discription:{
+    diseription:{
         type:String,
         required:true,
         maxlength:[119,'Description is too long!']
     },
-
     streetAddress: {
         type: String,
         required: true
@@ -27,7 +26,7 @@ const listingSchema = new mongoose.Schema({
     propertyType:{
         type:String,
         required:true,
-        enu:['Flat', 'Villa', 'Compound', 'Village']
+        enum:['Flat', 'Villa', 'Compound', 'Village']
     },
     isAvailable:{
         type: Boolean,
@@ -39,7 +38,8 @@ const listingSchema = new mongoose.Schema({
     owner: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
-        required: true
+        required: true,
+        select: false
     },
     category: {
         type: mongoose.Schema.Types.ObjectId,

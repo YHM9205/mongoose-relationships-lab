@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Listings</title>
+</head>
+
+<body>
+    <h1>All Listings</h1>
+    <a href="/listings/new">Add New Listing</a>
+    <ul>
+        <% listings.forEach(listing=>{ %>
+            <li>
+                <h2><a href="/listings/<%= listing._id %>">
+                        <%= listing.title %>
+                    </a></h2>
+                <p>Address: <%= listing.streetAddress %>, <%= listing.city %>
+                </p>
+                <p>Price: <%= listing.price %>
+                </p>
+
+                <P>Owner: <%= listing.owner ? listing.owner.username: 'Unknown' %>
+                </P>
+                <p>Category: <%= listing.category ? listing.category.categoryName:'None' %>
+                </p>
+            </li>
+            <% }) %>
+    </ul>
+
+</body>
+
+</html>

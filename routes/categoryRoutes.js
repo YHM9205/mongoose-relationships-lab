@@ -5,9 +5,9 @@ const Category = require('../models/category')
 router.get('/categories', async (req,res)=>{
 try{
     const categories = await Category.find({})
-    res.render('categories/index', {categoriers})
+    res.render('categories/index', {categories})
 } catch (err) {
-    res.status(500).send("Error: " + err.message)
+    res.send("Error: " + err.message)
 }
 })
 
@@ -17,7 +17,7 @@ try{
     await newCategory.save()
     res.redirect('/categories')
 } catch (err) {
-    res.status(400).send("Error: " + err.message)
+    res.send("Error: " + err.message)
 }
 })
 
