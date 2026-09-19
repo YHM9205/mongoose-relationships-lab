@@ -27,4 +27,4 @@ reviewSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 const Reviwe = mongoose.model('Review', reviewSchema)
-moudule.exports = Reviwe
+module.exports = Reviwe

@@ -11,4 +11,13 @@ const createCategory = async (req, res) => {
         }
     }
 
-    module.exports = { createCategory}
+    const allCategories = async (req,res) =>{
+        try{
+            const categories = await Category.find()
+            res.render('categories/all-categories', {categories})
+        } catch (error) {
+            console.log(error)
+            res.redirect('/')
+        }
+    }
+    module.exports = { createCategory, allCategories}
