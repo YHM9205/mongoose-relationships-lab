@@ -17,17 +17,6 @@ const listingRoutes = require('./routes/listingRoutes')
 const categoryRoutes = require('./routes/categoryRoutes')
 const reviewRoutes = require('./routes/reviewRoutes')
 
-
-
-
-
-
-
-
-
-
-
-
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'))
 
@@ -37,14 +26,10 @@ app.use(express.urlencoded({ extended: true })); // this will allow us to see th
 app.use(methodOverride("_method")); // Changes the method based on the ?_method
 app.use(morgan("dev")); // logs the requests as they are sent to our sever in the terminal
 
-
-
-
 app.use(userRoutes);
 app.use(listingRoutes);
 app.use(categoryRoutes);
 app.use(reviewRoutes);
-
 
 async function conntectToDB() { //connection to the database
     try {
@@ -56,47 +41,13 @@ async function conntectToDB() { //connection to the database
     }
 }
 
-
 conntectToDB()
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Routes go here
-app.get('/', async (req,res)=> {
-    res.send("Homepage")
+app.get('/', async (req, res) => {
+    res.render('homepage') // تم تعديلها لعرض ملف الـ homepage.ejs
 })
 
-
-
-
-
-
-
-
-
-
-app.listen(3000,()=>{
+app.listen(3000, () => {
     console.log("Listening on port " + 3000)
 }) // Listen on port 3000
-
-
-
-
-
-

@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const catCtr1 = require('../controllers/category')
+const catCtrl = require('../controllers/categories'); 
 
 
-router.get('/categories/new', catCtr1.createCategory);
-router.post('/categories', catCtr1.createCategory);
-router.get('/categorries', catCtr1.allCategories)
+router.get('/listings/new', catCtrl.newListing);
+router.post('/listings', catCtrl.createListing);
+router.get('/listings', catCtrl.allListings)
 
 
 
