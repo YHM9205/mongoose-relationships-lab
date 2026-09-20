@@ -1,37 +1,48 @@
 // imports
-const express = require("express") //importing express package
-const app = express() // creates a express application
+const express = require("express")
+const app = express()
 const path = require("path")
-const dotenv = require("dotenv").config() //this allows me to use my .env values in this file
+const dotenv = require("dotenv").config()
 const mongoose = require("mongoose")
 const morgan = require("morgan")
 const methodOverride = require("method-override")
 
+
+
 const User = require('./models/user')
 const Listing = require('./models/listing')
 const Category = require('./models/category')
-const Reviewe = require('./models/review')
+const Review = require('./models/review')
 
-const userRoutes = require('./routes/UserRoutes')
+const authRoutes = require('./routes/UserRoutes')
 const listingRoutes = require('./routes/listingRoutes')
 const categoryRoutes = require('./routes/categoryRoutes')
 const reviewRoutes = require('./routes/reviewRoutes')
+
 
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'))
 
 // Middleware
-app.use(express.static('public')); //all static files are in the public folder
-app.use(express.urlencoded({ extended: true })); // this will allow us to see the data being sent in the POST or PUT
-app.use(methodOverride("_method")); // Changes the method based on the ?_method
-app.use(morgan("dev")); // logs the requests as they are sent to our sever in the terminal
+app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride("_method"));
+app.use(morgan("dev"));
 
-app.use(userRoutes);
+
+
+
+// Routes
+app.get('/', (req, res) => {
+    res.render('homepage')
+})
+app.use('/auth',authRoutes); 
 app.use(listingRoutes);
 app.use(categoryRoutes);
 app.use(reviewRoutes);
 
-async function conntectToDB() { //connection to the database
+
+async function connectToDB() {
     try {
         await mongoose.connect(process.env.MONGODB_URI)
         console.log("Connected to Database")
@@ -41,13 +52,9 @@ async function conntectToDB() { //connection to the database
     }
 }
 
-conntectToDB()
+connectToDB()
 
-// Routes go here
-app.get('/', async (req, res) => {
-    res.render('homepage') // تم تعديلها لعرض ملف الـ homepage.ejs
-})
 
 app.listen(3000, () => {
     console.log("Listening on port " + 3000)
-}) // Listen on port 3000
+})

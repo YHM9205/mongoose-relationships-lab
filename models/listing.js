@@ -20,8 +20,7 @@ const listingSchema = new mongoose.Schema({
     owner: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
-        required: true,
-        select: false
+        required: true
     },
     category: {
         type: mongoose.Schema.Types.ObjectId,

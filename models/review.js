@@ -1,6 +1,5 @@
-mongoose = require("mongoose")
-
-reviewSchema = new mongoose.Schema({
+const mongoose = require("mongoose")
+const reviewSchema = new mongoose.Schema({
     reviewTitle: {
         type: String,
         required: true
@@ -26,5 +25,5 @@ reviewSchema = new mongoose.Schema({
     },
 }, { timestamps: true });
 
-const Reviwe = mongoose.model('Review', reviewSchema)
-module.exports = Reviwe
+const Review = mongoose.model('Review', reviewSchema)
+module.exports = Review

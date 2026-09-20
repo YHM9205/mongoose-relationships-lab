@@ -1,46 +1,64 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>Add Listing</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Listing</title>
 </head>
 
 <body>
-    <h1>Add New Listing</h1>
 
+    <h1>Create a New Listing</h1>
     <form action="/listings" method="POST">
         <label>Title:</label>
-        <input name="title" required />
+        <input type="text" name="title" required>
 
         <label>Description:</label>
         <textarea name="description" required></textarea>
 
         <label>Street Address:</label>
-        <input name="streetAddress" required />
-
+        <input type="text" name="streetAddress" required>
+       
         <label>City:</label>
-        <input name="city" required />
-
+        <input type="text" name="city" required>
+       
         <label>Price:</label>
-        <input name="price" type="number" required />
-
-        <label>Size:</label>
-        <input name="size" type="number" required />
-
-        <label>Category:</label>
-        <select name="category" required>
-            <% categories.forEach(cat=> { %>
-                <option value="<%= cat._id %>">
-                    <%= cat.categoryName %>
-                </option>
-                <% }) %>
+        <input type="number" name="price" required>
+        
+        
+        <label>Property Type:</label>
+        <select name="propertyType">
+        <option value="Flat">Flat</option>
+        <option value="Villa">Villa</option>
+        <option value="Compound">Compound</option>
+        <option value="Village">Village</option>
         </select>
 
-        <button type="submit">Create Listing</button>
+    <label for="size">Size (sq mt):</label>
+    <input type="number" name="size">
+
+
+    <label for="category">Category</label>
+    <select name="category" required>
+        <% categories.forEach(cat => { %>
+            <option value="<%= cat._id %>"><%= cat.categoryName %></option>
+         <% }) %>
+    </select>
+
+
+    <label for="owner">Owner</label>
+    <select name="owner" required>
+        <% users.forEach(user => { %>
+            <option value="<%= user._id %>"><%= user.username %></option>
+        <% }) %>
+    </select>
+
+    <label>
+        <input type="checkbox" name="isAvailable" checked> Available
+    </label>
+
+    <button type="submit">Add Listing</button>
     </form>
-
-    <br>
-    <a href="/listings">Back to Listings</a>
 </body>
-
 </html>
